@@ -20,7 +20,7 @@ const Login = () => {
     try{
       const response = await AuthService.userLogin(user)
       dispatch(signUserSuccess(response.user))
-      navigate('/')
+      // navigate('/')
     }catch(error){
       dispatch(signUserFailure(error.response.data.errors))
     }
