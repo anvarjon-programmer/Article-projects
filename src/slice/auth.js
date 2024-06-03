@@ -16,19 +16,22 @@ export const authSlice = createSlice({
             state.isLoading = true
         },
         signUserSuccess: (state,action) => {
-            state.loggedIn = true
             state.isLoading = false
             state.user = action.payload
             setItem("token",action.payload.token)
-            // localStorage.setItem('token',action.payload.token)
+            state.loggedIn = true
         },
         signUserFailure: (state,action) => {
             state.isLoading = false;
             state.error = action.payload
         },
+        logoutUser:state => {
+            state.user = null
+            state.loggedIn = false
+        }
        
     }
 })
 
-export const {signUserStart,signUserFailure,signUserSuccess} = authSlice.actions;
+export const {signUserStart,signUserFailure,signUserSuccess,logoutUser} = authSlice.actions;
 export default authSlice.reducer
