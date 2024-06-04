@@ -11,6 +11,7 @@ import { signUserSuccess } from './slice/auth'
 import { getItem } from './helpers/persistance-storage'
 import ArticleService from './service/article'
 import { getArticleSuccess, getArticlesStart } from './slice/article'
+import ArticleDetail from './components/article-detail/ArticleDetail'
 function App() {
   const dispatch = useDispatch();
   const getUser = async () => {
@@ -43,12 +44,13 @@ function App() {
   },[])
 
   return (
-    <div>
+    <div className='container'>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Main/>}/>
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path='/article/:id' element={<ArticleDetail/>}/>
       </Routes>
     </div>
   )

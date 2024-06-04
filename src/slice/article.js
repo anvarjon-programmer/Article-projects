@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     isLoading:false,
     articles:[],
+    articleDetail:null,
     error:null
 };
 export const artticleSlice = createSlice({
@@ -17,8 +18,19 @@ export const artticleSlice = createSlice({
         },
         getArticleFailure: (state, action) =>{
             state.error = action.payload
+            state.isLoading = false
+        },
+        getArticleDetailStart:state =>{
+            state.isLoading = true
+        },
+        getArticleDetailSuccess: (state,action) =>{
+            state.isLoading = false
+            state.articleDetail = action.payload
+        },
+        getArticleDetailFailure: state => {
+            state.isLoading = false
         }
     }
 })
-export  const {getArticlesStart, getArticleSuccess, getArticleFailure} = artticleSlice.actions
+export  const {getArticlesStart, getArticleSuccess, getArticleFailure, getArticleDetailFailure,getArticleDetailSuccess,getArticleDetailStart} = artticleSlice.actions
 export default artticleSlice.reducer
